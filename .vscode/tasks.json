@@ -1,0 +1,39 @@
+{
+  "version": "2.0.0",
+  "tasks": [
+    {
+      "type": "shell",
+      "label": "Create debug output folder",
+      "command": "if [ ! -d ${workspaceFolder}/debug/${relativeFileDirname} ]; then mkdir -p -m 777 ${workspaceFolder}/debug/${relativeFileDirname};fi",
+      "problemMatcher": []
+    },
+    {
+      "type": "shell",
+      "label": "C/C++: clang++ build active file",
+      "command": "/usr/bin/clang++",
+      "args": [
+        "-std=c++17",
+        "-stdlib=libc++",
+        "-g",
+        "${fileDirname}/*.cpp",
+        "-o",
+        "${workspaceFolder}/debug/${relativeFileDirname}/${fileBasenameNoExtension}",
+        "-v"
+      ],
+      "options": {
+        "cwd": "${workspaceFolder}"
+      },
+      "dependsOrder": "sequence",
+      "dependsOn": [
+        "Create debug output folder"
+      ],
+      "problemMatcher": [
+        "$gcc"
+      ],
+      "group": {
+        "kind": "build",
+        "isDefault": true
+      }
+    }
+  ]
+}
